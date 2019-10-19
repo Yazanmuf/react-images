@@ -1,4 +1,5 @@
 import React from 'react'
+import './App.css'
 import unsplash from '../api/unsplash'
 import SearchBar from './SearchBar'
 import Image from './Image'
@@ -12,6 +13,7 @@ import Image from './Image'
 class App extends React.Component {
     state = { images: [] };
 
+    // TODO create a seperate function that extracts out all the api requests from the <App> component
     onSearchSubmit = async (value) => {
 
         const promise = await unsplash.get('/search/photos', {
@@ -30,25 +32,20 @@ class App extends React.Component {
 
 
     render() {
+
         return (
             <>
                 <SearchBar onSubmit={this.onSearchSubmit} />
-                {this.state.images.map(image => {
-                    console.log(image)
-                    return (<Image urlRaw={image.urls.raw} key={image.id} />)
-                })}
+                <div className='grid-list'>
+                    {this.state.images.map(image => {
+
+                        return (<Image image={image} key={image.id} />)
+                    })}
+                </div>
             </>
         )
     }
 
 };
-
-// const App = () => {
-//     return (
-//         <div>
-//             <SearchBar />
-//         </div>
-//     )
-// }
 
 export default App;

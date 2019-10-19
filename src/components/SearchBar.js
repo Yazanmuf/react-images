@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
     onFormSubmit = (event) => {
         event.preventDefault();
         // console.log("submitted", this.state.term)
-        // To clear the console. Always use setState
+
         this.props.onSubmit(this.state.term)
         // this.setState({ term: '' });
     }
